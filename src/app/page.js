@@ -17,28 +17,28 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-950 via-indigo-900 to-purple-900">
       {/* Navigation */}
-      <nav className="absolute top-0 left-0 right-0 p-6">
+      <nav className="absolute top-0 left-0 right-0 p-6 z-10">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="text-white/90 font-light">MOGUL</div>
           <div className="flex gap-8">
             <Link href="/dashboard" className="text-white/75 hover:text-white transition-colors">
               Dashboard
             </Link>
-            <Link href="/docs" className="text-white/75 hover:text-white transition-colors">
-              Documentation
+            <Link href="#" className="text-white/75 hover:text-white transition-colors">
+              Docs
             </Link>
-            <Link href="/contact" className="text-white/75 hover:text-white transition-colors">
-              Contact
+            <Link href="#" className="text-white/75 hover:text-white transition-colors">
+              Contato
             </Link>
           </div>
         </div>
       </nav>
 
       {/* Main Content */}
-      <main className="relative min-h-screen flex flex-col items-center justify-center p-8">
+      <main className="relative min-h-screen flex flex-col items-center justify-center p-12">
         {/* Animated text */}
-        <div className="text-center mb-12">
-          <h1 className="text-7xl md:text-8xl font-light tracking-[1em] text-white mb-8 relative">
+        <div className="text-center mb-2">
+          <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-9xl font-light tracking-widest sm:tracking-[0.2em] text-white mb-8 relative">
             {title.split('').map((letter, index) => (
               <span
                 key={index}
@@ -51,28 +51,28 @@ export default function Home() {
             ))}
           </h1>
           <p className="text-white/60 text-xl tracking-wider">
-            Secure API Key Management Platform
+            Gerenciamento seguro de API Key
           </p>
         </div>
 
         {/* Feature Cards */}
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl w-full mt-12">
           <div className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 transform hover:scale-105 transition-all">
-            <h3 className="text-blue-400 text-xl font-semibold mb-4">Secure Storage</h3>
+            <h3 className="text-blue-400 text-xl font-semibold mb-4">Armazenamento Seguro</h3>
             <p className="text-white/70">
-              Enterprise-grade encryption and secure storage for all your API keys
+              Criptografia e armazenamento empresarial seguro para todas as suas API keys
             </p>
           </div>
           <div className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 transform hover:scale-105 transition-all">
-            <h3 className="text-blue-400 text-xl font-semibold mb-4">Easy Management</h3>
+            <h3 className="text-blue-400 text-xl font-semibold mb-4">Gerenciamento Fácil</h3>
             <p className="text-white/70">
-              Intuitive dashboard for creating, updating, and revoking API keys
+              Dashboard intuitivo para criar, atualizar e revogar API keys
             </p>
           </div>
           <div className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 transform hover:scale-105 transition-all">
-            <h3 className="text-blue-400 text-xl font-semibold mb-4">Usage Analytics</h3>
+            <h3 className="text-blue-400 text-xl font-semibold mb-4">Análise de Uso</h3>
             <p className="text-white/70">
-              Real-time monitoring and detailed analytics for API key usage
+              Monitoramento em tempo real e análise detalhada do uso da API key
             </p>
           </div>
         </div>
@@ -84,7 +84,7 @@ export default function Home() {
                    font-medium tracking-wide transform hover:scale-105 transition-all
                    shadow-[0_0_30px_rgba(59,130,246,0.5)] hover:shadow-[0_0_50px_rgba(59,130,246,0.6)]"
         >
-          Get Started
+          Comece agora
         </Link>
 
         {/* Background Elements */}

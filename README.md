@@ -29,21 +29,13 @@ Requisitos:
 
 > AI will not replace you. A person using AI will. -@svpino
 
+
 ## 5. Recursos do Curso 📚
 
-### Materiais Oficiais
-- 🔗 [Repositório do Projeto](https://github.com/emarco177/dandi)
-  > Código-fonte e materiais do projeto que será desenvolvido
-
-### Comunidade e Suporte
-- 💬 [Discord](https://discord.com/invite/mRWyxwVD6J)
-  > Canal oficial para tirar dúvidas e interagir com outros alunos
-
-### Ferramentas Necessárias
-- 🛠️ [v0](https://v0.dev/)
-  > Ferramenta para desenvolvimento de interfaces
-- 🚀 [Vercel](https://vercel.com/)
-  > Plataforma para deploy do projeto
+- [Repositório do Projeto](https://github.com/emarco177/dandi)
+- [Discord](https://discord.com/invite/mRWyxwVD6J)
+- [v0](https://v0.dev/)
+- [Vercel](https://vercel.com/)
 
 
 ## 6. The GIST of Cursor
@@ -65,11 +57,9 @@ Requisitos:
     - Me pareceu que isso é default
 
 
-
 ## 7. Cursor Sign-Up
 
 - No settings é possível ver quantas requisições ainda é possível fazer. Modelo gpt-4-mini é ilimitado.
-
 
 
 ## 11. .cursorrules file and cursor.directory
@@ -179,4 +169,36 @@ NextJS vai criar toda a estrutura de pastas e estrutura de um projeto inicial si
 - [Tavily](https://tavily.com/)
 
 
-## 25. Supabase Integration 1
+## 25. Supabase Integration 
+
+- Criar um novo projeto em [Supabase](https://supabase.com/)
+- Criar arquivo .env.local na raiz do projeto
+- Instruir o Cursor a conectar a CRUD API com um banco de dados real feito no supabase
+- Criar tabela no supabase com os campos
+  - `id` (uuid, primary key)
+  - `name` (text, not null)
+  - `key` (text, not null)
+  - `type` (text, default: 'dev')
+  - `usage` (integer, default: 0)
+  - `created_at` (timestamp with time zone, default: now())
+- Instalar supabase `npm install @supabase/supabase-js`
+- **Funcionalidades e modelos de agentes estão diferentes que os vídeos do curso, o que levou a algumas mudanças**
+  - O curso indica criar uma pasta `/lib` e um arquivo `supabaseClient.js` mas o claude-3.7-sonnet (mais recente que o indicado no curso) acabou já construindo automaticamente
+  - Na minha implementação, devido a uma série de bugs, o modelo acabou decidindo por usar Service Role Key para facilitar a implementação.
+    ___
+    > *Usar a Service Role Key ignora as regras de acesso e não é seguro em produção. O ideal é configurar corretamente as políticas de RLS para garantir que cada usuário acesse apenas seus próprios dados.*
+    ___
+
+
+## Ajustes de estilo
+- Layout foi traduzido - Cursor Tab
+- Adição de toasts para copiar e deletar API key
+- Letterspacing e font-size para título na homepage
+
+
+## Refatoração
+- Aparentemente a versão usada no curso é anterior a versão atual. Funcionalidade "Composer" parece ter sido integrada ao "Chat" sendo utilizada por padrão ao usar a opção "Agent".
+- Pedi a refatoração e funcionou muito bem:
+  > I want you to help to refactor my code. This file @page.js is chuncky. It has a lot of logic in it, it has also the dashboard component and also the CRUD API fetching from supabase. I want to split this logic so the code is more maintenable. Please refactor the code.
+
+

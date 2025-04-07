@@ -1,5 +1,6 @@
 import { Space_Grotesk, Orbitron } from "next/font/google";
 import "./globals.css";
+import { Toaster } from 'react-hot-toast';
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -19,7 +20,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${orbitron.variable}`}>
-      <body className={`${spaceGrotesk.className} antialiased`}>{children}</body>
+      <body className={`${spaceGrotesk.className} antialiased`}>
+        {children}
+        <Toaster position="top-right" />
+      </body>
     </html>
   );
 }
