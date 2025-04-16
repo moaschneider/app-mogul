@@ -42,19 +42,12 @@ Requisitos:
 
 
 - Construir uma persona no Cursor com prompts do [Cursor Directory](https://cursor.directory/)
-
 - Adicionar printscreens, instructions, urls no composer
-
-- Selecionar o arquivo da requisição. Ex.: @arquivo.tsx
-
+- Selecionar trecho do código onde se quer alterar no chat (ALT + L)
 - Em caso de erros, selecionar o erro no terminal e adicionar no composer
-
-- Inspecionar as mudanças no código no Diff View
-
+- Inspecionar as mudanças no código no Diff View (não achei isso na versão atual)
 - A cada alteração o Cursor cria um checkpoint que pode ser reestabelecido
-
-- Settings > Features > Codebase indexing - Embeda os códigos no projeto (?). Pode ser incluido no contexto dos requerimentos para melhorar resultados. 
-    - Me pareceu que isso é default
+- Settings > Features > Codebase indexing - Embeda os códigos no projeto (?). Pode ser incluido no contexto dos requerimentos para melhorar resultados. (Não é default?)
 
 
 ## 7. Cursor Sign-Up
@@ -64,16 +57,15 @@ Requisitos:
 
 ## 11. .cursorrules file and cursor.directory
 
-- Usar prompts do Cursor Directory e adicionar .cursorrules na raiz do projeto 
-
-- Essas regras servem para linguagens e stacks específicas de cada projeto.
+- Usar prompts do Cursor Directory e adicionar .cursorrules na raiz do projeto
+- Essas regras servem para linguagens e stacks específicas de cada projeto
 
 
 
 ## 12. Cursor Rules For AI (Global)
 
 - Settings > General > Rules for AI: inserir regras gerais, que independem de qual tecnologia está sendo usada no projeto.
-    - Por exemplo: sempre responder em português ou sempre use functional React
+    - Por exemplo: "sempre responder em português" ou "sempre use functional React"
 
 - [How to Customize Cursor Rules for Maximum AI Coding Accuracy](https://www.youtube.com/watch?v=QXOZfIUOnQM)
 
@@ -143,7 +135,8 @@ Requisitos:
 
 ## 21. Gitingest (With AI Eden)
 
-- [Gitingest](https://gitingest.com/) - não entendi muito bem
+- [Gitingest](https://gitingest.com/)
+  - > Turn any Git repository into a simple text digest of its codebase. This is useful for feeding a codebase into any LLM. 
 
 
 ## 23. Creating our boilerplate NEXT JS with cursor
@@ -166,7 +159,7 @@ NextJS vai criar toda a estrutura de pastas e estrutura de um projeto inicial si
 
 ## 24. Cursor CRUD UI
 
-- [Tavily](https://tavily.com/)
+- Curso vai usar o [Tavily](https://tavily.com/) como exemplo
 
 
 ## 25. Supabase Integration 
@@ -191,13 +184,17 @@ NextJS vai criar toda a estrutura de pastas e estrutura de um projeto inicial si
 
 
 ## Ajustes de estilo
+
 - Layout foi traduzido - Cursor Tab
 - Adição de toasts para copiar e deletar API key
 - Letterspacing e font-size para título na homepage
 
 
-## Refatoração
-- Aparentemente a versão usada no curso é anterior a versão atual. Funcionalidade "Composer" parece ter sido integrada ao "Chat" sendo utilizada por padrão ao usar a opção "Agent".
+## 30. Refactoring
+
+- Aparentemente a versão usada no curso é anterior a versão atual. Funcionalidade "Composer" parece ter sido integrada ao "Chat".
+  - UPDATE: sim, o "Chat" é o antigo "Composer"
+  
 - Pedi a refatoração e funcionou muito bem:
   > I want you to help to refactor my code. This file @page.js is chuncky. It has a lot of logic in it, it has also the dashboard component and also the CRUD API fetching from supabase. I want to split this logic so the code is more maintenable. Please refactor the code.
 
