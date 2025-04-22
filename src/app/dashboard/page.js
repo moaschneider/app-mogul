@@ -40,11 +40,12 @@ export default function Dashboard() {
       <div className="flex-1 overflow-auto">
         <div className="p-8">
           <div className="max-w-6xl mx-auto space-y-8">
-            <div className="flex items-center justify-between">
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Dashboard</h2>
+            <div className="flex flex-col items-start">
+              <div className="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">
+                Dashboard
               </div>
-              <div>
+              <div className="w-full flex justify-between items-end">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Overview</h2>
                 <Link 
                   href="/" 
                   className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"

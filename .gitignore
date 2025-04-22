@@ -42,3 +42,5 @@ next-env.d.ts
 
 # legacy
 /src/app/v1
+
+.expo
