@@ -198,4 +198,6 @@ NextJS vai criar toda a estrutura de pastas e estrutura de um projeto inicial si
 - Pedi a refatoração e funcionou muito bem:
   > I want you to help to refactor my code. This file @page.js is chuncky. It has a lot of logic in it, it has also the dashboard component and also the CRUD API fetching from supabase. I want to split this logic so the code is more maintenable. Please refactor the code.
 
+- Ajustei os items de menu do sidebar
 
+- Implementou o validador de API Keys no menu API Playground.

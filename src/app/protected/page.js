@@ -1,11 +1,12 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Sidebar } from '../components/Sidebar';
 import { successToast, errorToast } from '@/lib/toast';
 
-export default function ProtectedPage() {
+// Create a client component that uses useSearchParams
+function ProtectedContent() {
   const [validating, setValidating] = useState(true);
   const [apiKeyInfo, setApiKeyInfo] = useState(null);
   const router = useRouter();
@@ -192,5 +193,14 @@ export default function ProtectedPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+// Main page component
+export default function ProtectedPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ProtectedContent />
+    </Suspense>
   );
 } 
