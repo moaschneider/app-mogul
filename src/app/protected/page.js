@@ -5,18 +5,61 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { Sidebar } from '../components/Sidebar';
 import { successToast, errorToast } from '@/lib/toast';
 
-// Create a client component that uses useSearchParams
+// Extract the search params logic into a separate component
+function SearchParamsHandler({ onParamsReady }) {
+  const searchParams = useSearchParams();
+  const key = searchParams.get('key');
+  
+  useEffect(() => {
+    onParamsReady(key);
+  }, [key, onParamsReady]);
+  
+  return null;
+}
+
 function ProtectedContent() {
   const [validating, setValidating] = useState(true);
   const [apiKeyInfo, setApiKeyInfo] = useState(null);
   const router = useRouter();
-  const searchParams = useSearchParams();
   const toastShownRef = useRef(false);
   
-  // We're removing the validation hook and handling it directly
+  const handleSearchParams = async (key) => {
+    toastShownRef.current = false;
+    
+    if (!key) {
+      errorToast('API Key não fornecida');
+      router.push('/playground');
+      return;
+    }
+    
+    try {
+      const response = await fetch(`/api/validate-key?key=${encodeURIComponent(key)}&showToast=false`);
+      const data = await response.json();
+      
+      if (data.valid) {
+        setApiKeyInfo({
+          valid: true,
+          name: data.name,
+          type: data.type,
+          usage: data.usage,
+          lastUsed: data.lastUsed
+        });
+      } else {
+        setApiKeyInfo({
+          valid: false,
+          error: data.error || "API Key inválida"
+        });
+      }
+    } catch (error) {
+      console.error('Error validating API key:', error);
+      errorToast('Erro ao validar API Key');
+      router.push('/playground');
+    } finally {
+      setValidating(false);
+    }
+  };
   
   useEffect(() => {
-    // Show toast only once when validation is complete
     if (!validating && apiKeyInfo && !toastShownRef.current) {
       if (apiKeyInfo.valid) {
         successToast('API Key válida');
@@ -26,51 +69,6 @@ function ProtectedContent() {
       toastShownRef.current = true;
     }
   }, [validating, apiKeyInfo]);
-  
-  useEffect(() => {
-    async function validateApiKey() {
-      const key = searchParams.get('key');
-      toastShownRef.current = false;
-      
-      if (!key) {
-        errorToast('API Key não fornecida');
-        router.push('/playground');
-        return;
-      }
-      
-      try {
-        // Call the API endpoint to validate the key against the database
-        // Pass showToast=false to prevent backend notifications
-        const response = await fetch(`/api/validate-key?key=${encodeURIComponent(key)}&showToast=false`);
-        const data = await response.json();
-        
-        if (data.valid) {
-          setApiKeyInfo({
-            valid: true,
-            name: data.name,
-            type: data.type,
-            usage: data.usage,
-            lastUsed: data.lastUsed
-          });
-          // Don't show toast here, we'll handle it in the other effect
-        } else {
-          setApiKeyInfo({
-            valid: false,
-            error: data.error || "API Key inválida"
-          });
-          // Don't show toast here, we'll handle it in the other effect
-        }
-      } catch (error) {
-        console.error('Error validating API key:', error);
-        errorToast('Erro ao validar API Key');
-        router.push('/playground');
-      } finally {
-        setValidating(false);
-      }
-    }
-    
-    validateApiKey();
-  }, [searchParams, router]);
 
   return (
     <div className="flex h-screen bg-gray-50 dark:bg-gray-900">
@@ -79,6 +77,11 @@ function ProtectedContent() {
       
       {/* Main Content */}
       <div className="flex-1 overflow-auto">
+        {/* Wrap the search params handler in its own Suspense boundary */}
+        <Suspense fallback={null}>
+          <SearchParamsHandler onParamsReady={handleSearchParams} />
+        </Suspense>
+        
         <div className="p-8">
           <div className="max-w-3xl mx-auto space-y-8">
             <div className="flex flex-col items-start">
@@ -196,7 +199,6 @@ function ProtectedContent() {
   );
 }
 
-// Main page component
 export default function ProtectedPage() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
