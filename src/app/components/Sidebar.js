@@ -31,7 +31,7 @@ export function Sidebar({ className = '' }) {
   const navigation = [
     {
       name: 'Overview',
-      href: '/dashboard/overview',
+      href: '/dashboard',
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V6z" />
@@ -40,7 +40,7 @@ export function Sidebar({ className = '' }) {
     },
     {
       name: 'API Playground',
-      href: '/dashboard/playground',
+      href: '/playground',
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
